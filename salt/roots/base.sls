@@ -23,3 +23,14 @@ mysql:
   service.running:
     - watch:
       - pkg: mysql-server-5.6
+      - file: /etc/mysql/my.cnf
+
+/etc/mysql/my.cnf:
+  file.managed:
+    - source: salt://files/etc/mysql/my.cnf.jinja
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 640
+    - require:
+      - pkg: mysql-server-5.6
