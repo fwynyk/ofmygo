@@ -20,15 +20,24 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.synced_folder "salt/roots/", "/srv/salt/"
-
   config.vm.define "Database" do |db|
-    db.vm.hostname = "mysqlserver"
+    db.vm.hostname = "database"
     db.vm.provision :salt do |salt|
-      salt.minion_config = "salt/minion.yml"
+      salt.minion_config = "salt/minion-db.yml"
       salt.run_highstate = true
       salt.colorize = true
       salt.log_level = 'info'
     end
   end
+
+  config.vm.define "Webapp" do |web|
+    web.vm.hostname = "webapp"
+    web.vm.provision :salt do |salt|
+      salt.minion_config = "salt/minion-web.yml"
+      salt.run_highstate = true
+      salt.colorize = true
+      salt.log_level = 'info'
+    end
+  end
+
 end
