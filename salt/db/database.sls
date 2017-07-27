@@ -27,7 +27,7 @@ mysql:
 
 /etc/mysql/my.cnf:
   file.managed:
-    - source: salt://files/etc/mysql/my.cnf.jinja
+    - source: salt://files/database/etc/mysql/my.cnf.jinja
     - template: jinja
     - user: root
     - group: root
