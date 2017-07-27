@@ -34,3 +34,14 @@ mysql:
     - mode: 640
     - require:
       - pkg: mysql-server-5.6
+
+user_webapp:
+  mysql_user.present:
+    - name: webapp
+    - host: '%'
+    - password_hash: '*6167CC1E57CD7284D48504A5E806397E375FBE32'
+  mysql_grants.present:
+    - grant: insert, update, select, delete
+    - database: 'gowebapp.*'
+    - user: webapp
+    - host: '%'
