@@ -41,7 +41,7 @@ user_webapp:
     - host: '%'
     - password_hash: '*6167CC1E57CD7284D48504A5E806397E375FBE32'
   mysql_grants.present:
-    - grant: insert, update, select, delete
+    - grant: insert, update, select, delete, create, drop
     - database: 'gowebapp.*'
     - user: webapp
     - host: '%'
