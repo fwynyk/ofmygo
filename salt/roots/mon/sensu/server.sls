@@ -57,3 +57,17 @@ sensu-api:
     - watch:
       - file: sensu-server-config
 
+# Manage sensu-dashboard (Web service)
+uchiwa:
+  pkg.installed:
+    - sources:
+      - uchiwa: http://dl.bintray.com/palourde/uchiwa/uchiwa_0.25.3-1_amd64.deb
+  file.managed:
+    - name: /etc/sensu/uchiwa.json
+    - source: salt://mon/sensu/uchiwa-config.json
+  service.running:
+    - require:
+      - service: sensu-server
+    - watch:
+      - file: sensu-server-config
+

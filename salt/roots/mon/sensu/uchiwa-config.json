@@ -1,0 +1,19 @@
+{
+  "sensu": [
+    {
+      "name": "Monitoring",
+      "host": "monitoring",
+      "port": 4567,
+      "ssl": false,
+      "path": "",
+      "user": "sensu",
+      "pass": "change123me",
+      "timeout": 10
+    }
+  ],
+  "uchiwa": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "refresh": 10
+  }
+}
