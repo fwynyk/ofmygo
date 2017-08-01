@@ -6,13 +6,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.provider "virtualbox" do |v|
-    v.cpus = 2
-    v.memory = 2048
-  end
-
-  config.vm.network "private_network", type: "dhcp"
-  
   config.hostmanager.enabled = true
   config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
     if vm.id
@@ -22,11 +15,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "Database" do |db|
     db.vm.hostname = "database"
+    db.vm.provider "virtualbox" do |v|
+      v.cpus = 1
+      v.memory = 2048
+    end
     db.vm.network "private_network", ip: "192.168.100.10"
     db.vm.provision :salt do |salt|
-      salt.minion_config = "salt/minion-db.yml"
+      salt.minion_config = "salt/minion.yml"
       salt.run_highstate = true
       salt.colorize = true
+      salt.verbose = true
       salt.log_level = 'info'
     end
   end
@@ -36,9 +34,10 @@ Vagrant.configure("2") do |config|
     web.vm.network "private_network", ip: "192.168.100.20"
     web.vm.hostname = "webapp"
     web.vm.provision :salt do |salt|
-      salt.minion_config = "salt/minion-web.yml"
+      salt.minion_config = "salt/minion.yml"
       salt.run_highstate = true
       salt.colorize = true
+      salt.verbose = true
       salt.log_level = 'info'
     end
   end
