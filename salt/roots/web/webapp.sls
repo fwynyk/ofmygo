@@ -1,8 +1,5 @@
-git:
-  pkg.installed:
-  - pkgs:
-    - git
-    - mysql-client
+mysql-client:
+  pkg.installed
 
 install_golang:
   archive.extracted:
@@ -48,7 +45,7 @@ install_dependencies:
 
 /home/vagrant/src/github.com/josephspurrier/gowebapp/config/config.json:
   file.managed:
-    - source: salt://files/config.json
+    - source: salt://web/files/config.json
     - user: vagrant
     - group: vagrant
     - mode: 644
@@ -66,7 +63,7 @@ go_build:
 
 /etc/init.d/gowebapp:
   file.managed:
-    - source: salt://files/gowebapp-init
+    - source: salt://web/files/gowebapp-init
     - user: vagrant
     - group: vagrant
     - mode: 755
