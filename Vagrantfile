@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "Database" do |db|
     db.vm.hostname = "database"
+    db.vm.network "private_network", ip: "192.168.100.10"
     db.vm.provision :salt do |salt|
       salt.minion_config = "salt/minion-db.yml"
       salt.run_highstate = true
@@ -32,11 +33,25 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "Webapp" do |web|
     web.vm.network :forwarded_port, guest: 8080, host: 8080
+    web.vm.network "private_network", ip: "192.168.100.20"
     web.vm.hostname = "webapp"
     web.vm.provision :salt do |salt|
       salt.minion_config = "salt/minion-web.yml"
       salt.run_highstate = true
       salt.colorize = true
+      salt.log_level = 'info'
+    end
+  end
+
+  config.vm.define "Monitoring" do |mon|
+    mon.vm.network :forwarded_port, guest: 8080, host: 8081
+    mon.vm.network "private_network", ip: "192.168.100.30"
+    mon.vm.hostname = "monitoring"
+    mon.vm.provision :salt do |salt|
+      salt.minion_config = "salt/minion.yml"
+      salt.run_highstate = true
+      salt.colorize = true
+      salt.verbose = true
       salt.log_level = 'info'
     end
   end
