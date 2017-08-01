@@ -26,7 +26,7 @@ env_vars:
      - value:
          GOPATH: '/home/vagrant'
          GOROOT: '/usr/local/go'
-         PATH: '$PATH:/usr/local/go/bin:/home/vagrant/bin:/usr/bin:/bin'
+         PATH: '$PATH:/usr/local/go/bin:/home/vagrant/bin:/usr/bin:/bin:/sbin:/usr/sbin'
 
 install_dependencies:
   cmd.run:
@@ -46,13 +46,6 @@ install_dependencies:
       - go get github.com/josephspurrier/gowebapp
       - chown vagrant.vagrant /home/vagrant -R
 
-/home/vagrant/gowebapp.sh:
-  file.managed:
-    - source: salt://files/gowebapp.sh
-    - user: vagrant
-    - group: vagrant
-    - mode: 755
-
 /home/vagrant/src/github.com/josephspurrier/gowebapp/config/config.json:
   file.managed:
     - source: salt://files/config.json
@@ -70,3 +63,30 @@ go_build:
     - cwd: /home/vagrant/src/github.com/josephspurrier/gowebapp
     - names:
       - go build gowebapp.go
+
+/etc/init.d/gowebapp:
+  file.managed:
+    - source: salt://files/gowebapp-init
+    - user: vagrant
+    - group: vagrant
+    - mode: 755
+
+/var/log/gowebapp.log:
+  file.managed:
+    - user: vagrant
+    - group: vagrant
+    - mode: 644
+
+/var/run/gowebapp.pid:
+  file.managed:
+    - user: vagrant
+    - group: vagrant
+    - mode: 644
+
+gowebapp:
+  service.running:
+    - enable: True
+
+run_gowebapp:
+  cmd.run:
+    - name: 'service gowebapp start'   

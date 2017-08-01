@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "Webapp" do |web|
+    web.vm.network :forwarded_port, guest: 8080, host: 8080
     web.vm.hostname = "webapp"
     web.vm.provision :salt do |salt|
       salt.minion_config = "salt/minion-web.yml"
