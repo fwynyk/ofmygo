@@ -1,0 +1,14 @@
+{
+  "rabbitmq": {
+    "host": "monitoring",
+    "port": 5672,
+    "user": "sensu",
+    "password": "mypass",
+    "vhost": "/sensu"
+  },
+  "client": {
+    "name": "{{ grains['fqdn'] }}",
+    "address": "{{ grains['ipv4'][1] }}",
+    "subscriptions": [ "all" ]
+  }
+}
