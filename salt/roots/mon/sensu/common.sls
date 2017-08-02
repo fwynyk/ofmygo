@@ -51,7 +51,7 @@ install_sensu_plugins:
       - sensu-install -p load-checks  
       - sensu-install -p memory-checks 
       - sensu-install -p disk-checks  
-
+      - sensu-install -p process-checks
 
 # install public plugins and checks
 sensu-symlink-public-plugins:
