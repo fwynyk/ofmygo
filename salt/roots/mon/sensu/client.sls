@@ -15,4 +15,3 @@ sensu-client:
     - watch:
       - file: sensu-client-json
       - file: sensu-checks-all-json
-

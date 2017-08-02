@@ -20,6 +20,7 @@ sensu-pkgrepo:
 sensu-package:
   pkg.installed:
     - name: sensu
+    - refresh: True
 
 # tell plugins to use embeded ruby
 sensu-embeded-ruby-true:
@@ -28,28 +29,36 @@ sensu-embeded-ruby-true:
   - pattern: EMBEDDED_RUBY=false
   - repl: EMBEDDED_RUBY=true
 
+sensu-profile:
+  file.append:
+    - name: /etc/profile.d/sensu.sh
+    - text:
+        - EMBEDDED_RUBY=true
+
 # checks that all hosts run
 sensu-checks-all-json:
   file.managed:
     - name: /etc/sensu/conf.d/checks-all.json
     - source: salt://mon/sensu/checks-all.json
     - template: jinja
+    - watch_in:
+      - service: sensu-client
 
-# download public plugins and checks
-sensu-git-public-plugins:
-  git.latest:
-    - name: https://github.com/sensu/sensu-community-plugins.git
-    - target: /etc/sensu/community
-    - require:
-      - file: sensu-checks-all-json
-      - pkg: git
+
+install_sensu_plugins:
+  cmd.run:
+    - names:
+      - sensu-install -p load-checks  
+      - sensu-install -p memory-checks 
+      - sensu-install -p disk-checks  
+
 
 # install public plugins and checks
 sensu-symlink-public-plugins:
   file.symlink:
     - name: /etc/sensu/plugins
-    - target: /etc/sensu/community/plugins
+    - target: /opt/sensu/embedded/bin
     - force: True
     - require:
-      - git: sensu-git-public-plugins
-
+      - file: sensu-checks-all-json
+      - cmd: install_sensu_plugins

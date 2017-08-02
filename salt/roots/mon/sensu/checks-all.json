@@ -1,9 +1,25 @@
 {% set PLUGINS = '/etc/sensu/plugins' %}
 { 
   "checks": {
-    "check-cron": {
+    "check-mysql": {
       "handler": "default",
-      "command": "{{PLUGINS}}/processes/check-procs.rb -p cron -C 1 ",
+      "command": "{{PLUGINS}}/check-load.rb -w 2,3,4 -c 3,4,5",
+      "interval": 60,
+      "subscribers": [ "all" ]
+    }
+  },
+  "checks": {
+    "check-mysql": {
+      "handler": "default",
+      "command": "{{PLUGINS}}/check-load.rb -w 2,3,4 -c 3,4,5",
+      "interval": 60,
+      "subscribers": [ "all" ]
+    }
+  },
+  "checks": {
+    "check-mysql": {
+      "handler": "default",
+      "command": "{{PLUGINS}}/check-memory-percent.rb -w 80 -c 92 -p",
       "interval": 60,
       "subscribers": [ "all" ]
     }

@@ -1,6 +1,6 @@
 {
   "rabbitmq": {
-    "host": "monitoring",
+    "host": "192.168.100.30",
     "port": 5672,
     "user": "sensu",
     "password": "mypass",
@@ -8,7 +8,7 @@
   },
   "client": {
     "name": "{{ grains['fqdn'] }}",
-    "address": "{{ grains['ipv4'][1] }}",
+    "address": "{{ salt['network.interface_ip']('eth1') }}",
     "subscriptions": [ "all" ]
   }
 }

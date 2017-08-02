@@ -27,11 +27,6 @@ sensu-rabbitmq-permissions:
       - cmd: sensu-rabbitmq-vhost
       - cmd: sensu-rabbitmq-user
 
-# Example rabbitmqctl output:
-#  rabbitmqctl add_vhost /sensu
-#  rabbitmqctl add_user sensu mypass
-#  rabbitmqctl set_permissions -p /sensu sensu ".*" ".*" ".*"
-
 # Manage Sensu server configuration file
 sensu-server-config:
   file.managed:
