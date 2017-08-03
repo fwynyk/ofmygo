@@ -17,6 +17,8 @@ $ git clone https://github.com/fwynyk/ofmygo.git
 ```
 $ cd ofmygo
 
+$ chmod +x install-and-run.sh
+
 $ ./install-and-run.sh
 ```
 
