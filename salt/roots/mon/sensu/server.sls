@@ -38,6 +38,7 @@ sensu-server-config:
 # Manage sensu-server (monitoring service)
 sensu-server:
   service.running:
+    - enable: True
     - require:
       - service: redis-server 
     - watch:
@@ -47,6 +48,7 @@ sensu-server:
 # Manage sensu-api (API service)
 sensu-api:
   service.running:
+    - enable: True
     - require:
       - service: sensu-server
     - watch:
@@ -61,6 +63,7 @@ uchiwa:
     - name: /etc/sensu/uchiwa.json
     - source: salt://mon/sensu/uchiwa-config.json
   service.running:
+    - enable: True
     - require:
       - service: sensu-server
     - watch:

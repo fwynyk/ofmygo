@@ -51,7 +51,11 @@ install_sensu_plugins:
       - sensu-install -p load-checks  
       - sensu-install -p memory-checks 
       - sensu-install -p disk-checks  
-      - sensu-install -p process-checks
+      - sensu-install -p process-checks  
+      - sensu-install -p network-checks
+      - sensu-install -p mysql
+      - sensu-install -p golang
+
 
 # install public plugins and checks
 sensu-symlink-public-plugins:
@@ -62,3 +66,4 @@ sensu-symlink-public-plugins:
     - require:
       - file: sensu-checks-all-json
       - cmd: install_sensu_plugins
+

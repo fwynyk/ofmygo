@@ -16,6 +16,7 @@ rabbitmq-server:
       - pkg: rabbitmq-server   
 
   service.running:
+    - enable: True
     - watch:
       - pkg: rabbitmq-server   
       - file: rabbitmq-server   

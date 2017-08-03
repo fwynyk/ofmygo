@@ -1,38 +1,30 @@
 {% set PLUGINS = '/etc/sensu/plugins' %}
 { 
   "checks": {
-    "check-mysql": {
+    "check-load": {
       "handler": "default",
       "command": "{{PLUGINS}}/check-load.rb -w 2,3,4 -c 3,4,5",
       "interval": 60,
       "subscribers": [ "all" ]
-    }
-  },
-  "checks": {
-    "check-mysql": {
-      "handler": "default",
-      "command": "{{PLUGINS}}/check-load.rb -w 2,3,4 -c 3,4,5",
-      "interval": 60,
-      "subscribers": [ "all" ]
-    }
-  },
-  "checks": {
-    "check-mysql": {
+    },
+    "check-memory": {
       "handler": "default",
       "command": "{{PLUGINS}}/check-memory-percent.rb -w 80 -c 92 -p",
       "interval": 60,
       "subscribers": [ "all" ]
-    }
-  },
-  "checks": {
+    },
+    "check-disk": {
+      "handler": "default",
+      "command": "{{PLUGINS}}/check-disk-usage.rb -w 80 -c 90 -W 80 -K 90",
+      "interval": 60,
+      "subscribers": [ "all" ]
+    }, 
     "check-mysql": {
       "handler": "default",
       "command": "{{PLUGINS}}/check-process.rb -p mysqld -C 1 ",
       "interval": 60,
       "subscribers": [ "client:database" ]
-    }
-  },
-  "checks": {
+    },
     "check-gowebapp": {
       "handler": "default",
       "command": "{{PLUGINS}}/check-process.rb -p gowebapp -C 1 ",
