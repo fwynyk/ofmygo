@@ -8,33 +8,39 @@
 # Description:       gowebapp service
 ### END INIT INFO
 
-GOPATH=/home/vagrant/src/github.com/josephspurrier/gowebapp
-SCRIPT=$GOPATH/gowebapp 
+NAME=gowebapp
+GOPATH=/home/vagrant/src/github.com/josephspurrier/$NAME
+SCRIPT=$GOPATH/$NAME
 RUNAS=vagrant
 
-PIDFILE=/var/run/gowebapp.pid
-LOGFILE=/var/log/gowebapp.log
+PIDFILE=/var/run/$NAME.pid
+LOGFILE=/var/log/$NAME.log
 
 
 start() {
-  if [ -f /var/run/$PIDNAME ] && kill -0 $(cat /var/run/$PIDNAME); then
+  if [ -f /var/run/$PIDFILE ] && kill -0 $(cat /var/run/$PIDFILE); then
     echo 'Service already running' >&2
     return 1
   fi
   cd $GOPATH
   echo 'Starting service…' >&2
-  local CMD="$SCRIPT >> $LOGFILE 2>&1 &"
-  su -c "$CMD" $RUNAS > "$PIDFILE"
-  echo 'Service started' >&2
+  su $RUNAS -c "$SCRIPT > $LOGFILE 2>&1 &"
+  PID=`ps -fu $RUNAS| grep "$NAME" | grep -v "grep" | awk '{print $2}'`
+          if [ -z $PID ]; then
+            printf "%s\n" "Service failed to start."
+        else
+            echo $PID > $PIDFILE
+            printf "%s\n" "Service started!"
+        fi
 }
 
 stop() {
-  if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE"); then
+  if [ ! -f "$PIDFILE" ] || [ ! -s "$PIDFILE" ]; then
     echo 'Service not running' >&2
     return 1
   fi
   echo 'Stopping service…' >&2
-  kill -15 $(cat "$PIDFILE") && rm -f "$PIDFILE"
+  killall $NAME && echo "" > $PIDFILE
   echo 'Service stopped' >&2
 }
 
@@ -50,5 +56,5 @@ case "$1" in
     start
     ;;
   *)
-    echo "Usage: $0 {start|stop|restart|uninstall}"
+    echo "Usage: $0 {start|stop|restart}"
 esac
