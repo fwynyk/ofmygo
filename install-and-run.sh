@@ -3,7 +3,7 @@
 # INSTALL DEPENDENCIES
 
 sudo apt-get update
-sudo apt-get install gcc dkms linux-headers-$(uname -r) linux-headers-generic
+sudo apt-get install gcc dkms linux-headers-$(uname -r) linux-headers-generic -y
 
 # INSTALL VIRTUALBOX
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" >> /etc/apt/sources.list.d/virtualbox.list'
@@ -14,9 +14,9 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 sudo apt-get update
 
-sudo apt remove virtualbox virtualbox-5.0 virtualbox-4.*
+sudo apt remove virtualbox virtualbox-5.0 virtualbox-4.* -y
 
-sudo apt-get install virtualbox-5.1
+sudo apt-get install virtualbox-5.1 -y
 
 
 # INSTALL VAGRANT
