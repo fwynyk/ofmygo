@@ -1,5 +1,5 @@
 # OFMYGO
-#####(OneFootball MySQL Go)
+###### (OneFootball MySQL Go)
 
 ## Easy setup (for Debian/Ubuntu)
 - Git clone "ofmygo"
