@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
     db.vm.provision :salt do |salt|
       salt.minion_config = "salt/minion.yml"
       salt.run_highstate = true
+      salt.verbose = true
       salt.colorize = true
       salt.log_level = 'info'
     end
@@ -32,6 +33,7 @@ Vagrant.configure("2") do |config|
       salt.minion_config = "salt/minion.yml"
       salt.run_highstate = true
       salt.colorize = true
+      salt.verbose = true
       salt.log_level = 'info'
     end
   end
