@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# INSTALL DEPENDENCIES
+
+sudo apt-get update
+sudo apt-get install gcc dkms linux-headers-$(uname -r) linux-headers-generic
+
 # INSTALL VIRTUALBOX
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
