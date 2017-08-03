@@ -6,8 +6,10 @@ OFMYGO (OneFootball MySQL Go) is a test lab which builds 3 Virtualbox servers us
 - 'Webapp', which runs a Go application called ['gowebapp'](https://github.com/josephspurrier/gowebapp)
 - 'Monitoring', which runs Sensu server and monitors the 3 servers
 
-You can choose to follow [Easy setup](#easy-setup-for-debianubuntu) or [Standard setup](#standard-setup), according with your needs.
- 
+You can choose to follow [Easy setup](#easy-setup-for-debianubuntu) or [Standard setup](#standard-setup), according with your needs. 
+
+##### NOTE: Make sure to have SELINUX and secure boot (UEFI) disabled.
+
 
 ## Easy setup (for Debian/Ubuntu)
 
