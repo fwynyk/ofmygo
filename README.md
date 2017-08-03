@@ -11,7 +11,7 @@ You can choose to follow [Easy setup](#easy-setup-for-debianubuntu) or [Standard
 
 ## Easy setup (for Debian/Ubuntu)
 
-##### NOTE: This script removes previous virtualbox installations!
+##### NOTE: This script removes previous virtualbox installations! If you have any issues, please follow [Standard setup](#standard-setup).
 
 Be aware that 'install-and-run.sh' will download [Vagrant](https://www.vagrantup.com/downloads.html) and [Virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads) latest versions and associated dependencies. It also install some vagrant plugins and bring all virtual machines up in the end of the process. 
 
