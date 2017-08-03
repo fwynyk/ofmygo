@@ -6,7 +6,15 @@ OFMYGO (OneFootball MySQL Go) is a test lab which builds 3 Virtualbox servers us
 - 'Webapp', which runs a Go application called ['gowebapp'](https://github.com/josephspurrier/gowebapp)
 - 'Monitoring', which runs Sensu server and monitors the 3 servers
 
+You can choose to follow [Easy setup](#easy-setup) or [Standard setup](#standard-setup), according with your needs.
+ 
+
 ## Easy setup (for Debian/Ubuntu)
+
+##### NOTE: This script removes previous virtualbox installations!
+
+Be aware that 'install-and-run.sh' will download [Vagrant](https://www.vagrantup.com/downloads.html) and [Virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads) latest versions. It also install some vagrant plugins and bring all virtual machines up in the end of the process. 
+
 - Git clone "ofmygo"
 ```
 $ git clone https://github.com/fwynyk/ofmygo.git

@@ -1,7 +1,3 @@
-# PLEASE INSTALL THESE PLUGINS BEFORE `vagrant up`:
-# - hostmanager: `vagrant plugin install vagrant-hostmanager`
-# - salt:        `vagrant plugin install vagrant-salt`
-
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/trusty64"

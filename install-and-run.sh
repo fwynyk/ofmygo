@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# NOTE: This script removes previous virtualbox installations!
-
 # INSTALL VIRTUALBOX
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
