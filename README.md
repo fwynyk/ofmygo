@@ -37,9 +37,11 @@ $ ./install-and-run.sh
 
 - Install vagrant plugins
 `$ sudo vagrant plugin install vagrant-hostmanager`
+
 `$ sudo vagrant plugin install vagrant-salt`
 
 - Git clone "ofmygo"
+
 `$ git clone https://github.com/fwynyk/ofmygo.git` 
 
 - Run vagrant
