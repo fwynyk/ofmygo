@@ -1,5 +1,10 @@
 # OFMYGO
-###### (OneFootball MySQL Go)
+
+OFMYGO (OneFootball MySQL Go) is a test lab which builds 3 Virtualbox servers using [vagrant](https://www.vagrantup.com/) and [saltstack](https://saltstack.com/). Each virtual machine runs a different service, as follows:
+
+- 'Database', which runs MySQL 5.6
+- 'Webapp', which runs a Go application called ['gowebapp'](https://github.com/josephspurrier/gowebapp)
+- 'Monitoring', which runs Sensu server and monitors the 3 servers
 
 ## Easy setup (for Debian/Ubuntu)
 - Git clone "ofmygo"
