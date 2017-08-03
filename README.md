@@ -36,6 +36,7 @@ $ ./install-and-run.sh
 - Make sure you have latest  versions of [Vagrant](https://www.vagrantup.com/downloads.html) and [Virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads)  installed
 
 - Install vagrant plugins
+
 `$ sudo vagrant plugin install vagrant-hostmanager`
 
 `$ sudo vagrant plugin install vagrant-salt`
