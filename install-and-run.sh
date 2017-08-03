@@ -15,10 +15,15 @@ sudo apt-get install virtualbox-5.1
 
 
 # INSTALL VAGRANT
-curl -o- https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.deb | sudo dpkg -i
+wget -q https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.deb
+
+sudo dpkg -i vagrant_1.9.7_x86_64.deb
+
+rm vagrant_1.9.7_x86_64.deb -f
 
 # INSTALL VAGRANT PLUGIN DEPENDENCIES
 sudo vagrant plugin install vagrant-hostmanager
+
 sudo vagrant plugin install vagrant-salt
 
 # RUN VAGRANT
